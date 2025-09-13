@@ -59,5 +59,21 @@ class AppConstants {
   static const Duration shortAnimation = Duration(milliseconds: 200);
   static const Duration mediumAnimation = Duration(milliseconds: 300);
   static const Duration longAnimation = Duration(milliseconds: 500);
+  
+  // Image Sizes
+  static const double smallIconSize = 16.0;
+  static const double mediumIconSize = 24.0;
+  static const double largeIconSize = 32.0;
+  static const double extraLargeIconSize = 48.0;
+  
+  // Profile Image
+  static const double profileImageSize = 80.0;
+  static const double smallProfileImageSize = 40.0;
+  static const double largeProfileImageSize = 120.0;
+  
+  // Map Markers
+  static const double mapMarkerSize = 30.0;
+  static const double smallMapMarkerSize = 20.0;
+  static const double largeMapMarkerSize = 40.0;
 }
 
