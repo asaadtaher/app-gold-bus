@@ -1,79 +1,89 @@
 class AppConstants {
-  // App Info
+  // App Information
   static const String appName = 'Gold Bus';
   static const String appVersion = '1.0.0';
+  static const String appDescription = 'School Transportation Management App';
   
-  // Colors
-  static const int primaryColorValue = 0xFFFFD700; // Gold
-  static const int secondaryColorValue = 0xFF000000; // Black
-  static const int accentColorValue = 0xFF333333; // Dark Gray
-  
-  // API
-  static const String baseUrl = 'https://api.goldbus.com';
-  static const Duration apiTimeout = Duration(seconds: 30);
-  
-  // Maps
-  static const String googleMapsApiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
-  
-  // Firebase Collections
+  // Collections
   static const String usersCollection = 'users';
-  static const String busesCollection = 'buses';
   static const String studentsCollection = 'students';
+  static const String busesCollection = 'buses';
   static const String routesCollection = 'routes';
+  static const String absencesCollection = 'absences';
+  static const String chatMessagesCollection = 'chat_messages';
   static const String notificationsCollection = 'notifications';
+  static const String reportsCollection = 'reports';
+  static const String auditLogsCollection = 'audit_logs';
   
-  // Storage Paths
-  static const String profileImagesPath = 'profile_images';
-  static const String busImagesPath = 'bus_images';
-  static const String studentImagesPath = 'student_images';
+  // User Roles
+  static const String parentRole = 'parent';
+  static const String driverRole = 'driver';
+  static const String supervisorRole = 'supervisor';
+  static const String adminRole = 'admin';
   
-  // Tracking
-  static const Duration locationUpdateInterval = Duration(seconds: 3);
-  static const Duration backgroundLocationInterval = Duration(seconds: 10);
-  static const double geofenceRadius = 100.0; // meters
+  // Absence Types
+  static const String goingOnly = 'goingOnly';
+  static const String returningOnly = 'returningOnly';
+  static const String both = 'both';
   
-  // Notifications
-  static const String checkInChannelId = 'check_in_channel';
-  static const String checkOutChannelId = 'check_out_channel';
-  static const String emergencyChannelId = 'emergency_channel';
-  static const String generalChannelId = 'general_channel';
+  // Vehicle Types
+  static const List<String> vehicleTypes = [
+    'ملاكي',
+    'ميكروباص',
+    'هاي اس',
+    'باص 28',
+    'كوستر',
+    'ملاكي 7 راكب',
+    'H1',
+    'باص 50 راكب',
+    'آخر',
+  ];
   
-  // Shared Preferences Keys
-  static const String userTokenKey = 'user_token';
-  static const String userRoleKey = 'user_role';
-  static const String selectedLanguageKey = 'selected_language';
-  static const String themeModeKey = 'theme_mode';
-  static const String notificationsEnabledKey = 'notifications_enabled';
+  // Contact Information
+  static const String adminPhone1 = '01204746897';
+  static const String adminPhone2 = '01203935169';
   
-  // Validation
-  static const int minPasswordLength = 8;
-  static const int maxNameLength = 50;
-  static const int maxPhoneLength = 15;
-  
-  // UI
-  static const double defaultPadding = 16.0;
-  static const double defaultRadius = 8.0;
-  static const double defaultElevation = 2.0;
+  // Map Configuration
+  static const double defaultLatitude = 30.0444;
+  static const double defaultLongitude = 31.2357;
+  static const double defaultZoom = 15.0;
   
   // Animation Durations
   static const Duration shortAnimation = Duration(milliseconds: 200);
   static const Duration mediumAnimation = Duration(milliseconds: 300);
   static const Duration longAnimation = Duration(milliseconds: 500);
   
-  // Image Sizes
-  static const double smallIconSize = 16.0;
-  static const double mediumIconSize = 24.0;
-  static const double largeIconSize = 32.0;
-  static const double extraLargeIconSize = 48.0;
+  // UI Constants
+  static const double defaultPadding = 16.0;
+  static const double smallPadding = 8.0;
+  static const double largePadding = 24.0;
+  static const double defaultRadius = 8.0;
+  static const double smallRadius = 4.0;
+  static const double largeRadius = 12.0;
   
-  // Profile Image
-  static const double profileImageSize = 80.0;
-  static const double smallProfileImageSize = 40.0;
-  static const double largeProfileImageSize = 120.0;
+  // Validation
+  static const int minPasswordLength = 6;
+  static const int maxNameLength = 50;
+  static const int maxDescriptionLength = 200;
   
-  // Map Markers
-  static const double mapMarkerSize = 30.0;
-  static const double smallMapMarkerSize = 20.0;
-  static const double largeMapMarkerSize = 40.0;
+  // Storage Paths
+  static const String profileImagesPath = 'profile_images';
+  static const String driverLicensesPath = 'driver_licenses';
+  static const String vehicleLicensesPath = 'vehicle_licenses';
+  static const String busImagesPath = 'bus_images';
+  static const String studentImagesPath = 'student_images';
+  
+  // Error Messages
+  static const String networkError = 'خطأ في الاتصال بالإنترنت';
+  static const String unknownError = 'حدث خطأ غير متوقع';
+  static const String permissionDenied = 'تم رفض الصلاحية';
+  static const String userNotFound = 'المستخدم غير موجود';
+  static const String invalidCredentials = 'بيانات الدخول غير صحيحة';
+  
+  // Success Messages
+  static const String loginSuccess = 'تم تسجيل الدخول بنجاح';
+  static const String registrationSuccess = 'تم التسجيل بنجاح';
+  static const String updateSuccess = 'تم التحديث بنجاح';
+  static const String deleteSuccess = 'تم الحذف بنجاح';
+  static const String saveSuccess = 'تم الحفظ بنجاح';
 }
-

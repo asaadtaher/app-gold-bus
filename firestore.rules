@@ -1,0 +1,194 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function hasRole(role) {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role;
+    }
+    
+    function isApproved() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.approved == true;
+    }
+    
+    function isAdmin() {
+      return hasRole('admin') && isApproved();
+    }
+    
+    function isSupervisor() {
+      return hasRole('supervisor') && isApproved();
+    }
+    
+    function isDriver() {
+      return hasRole('driver') && isApproved();
+    }
+    
+    function isParent() {
+      return hasRole('parent') && isApproved();
+    }
+    
+    function isValidUser() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow update: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow delete: if isAdmin();
+    }
+    
+    // Students collection
+    match /students/{studentId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        isSupervisor() || 
+        (isParent() && resource.data.parentId == request.auth.uid) ||
+        (isDriver() && resource.data.busId != null)
+      );
+      allow create: if isSupervisor() || isAdmin();
+      allow update: if isSupervisor() || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Buses collection
+    match /buses/{busId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        isSupervisor() || 
+        isDriver() ||
+        isParent()
+      );
+      allow create: if isAdmin();
+      allow update: if isAdmin() || (isDriver() && resource.data.driverId == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+    
+    // Routes collection
+    match /routes/{routeId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        isSupervisor() || 
+        isDriver() ||
+        isParent()
+      );
+      allow create: if isAdmin() || isSupervisor();
+      allow update: if isAdmin() || isSupervisor();
+      allow delete: if isAdmin();
+    }
+    
+    // Absences collection
+    match /absences/{absenceId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        isSupervisor() || 
+        (isParent() && resource.data.parentId == request.auth.uid) ||
+        (isDriver() && resource.data.busId != null)
+      );
+      allow create: if isValidUser() && (
+        isParent() || 
+        isSupervisor() || 
+        isAdmin()
+      );
+      allow update: if isSupervisor() || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Chat messages collection
+    match /chat_messages/{messageId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        (isSupervisor() && (resource.data.senderId == request.auth.uid || resource.data.receiverId == request.auth.uid)) ||
+        (isParent() && (resource.data.senderId == request.auth.uid || resource.data.receiverId == request.auth.uid))
+      );
+      allow create: if isValidUser() && (
+        isSupervisor() || 
+        isParent() || 
+        isAdmin()
+      );
+      allow update: if isAuthenticated() && resource.data.senderId == request.auth.uid;
+      allow delete: if isAdmin() || (isAuthenticated() && resource.data.senderId == request.auth.uid);
+    }
+    
+    // Reports collection
+    match /reports/{reportId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() || isSupervisor();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      allow read: if isValidUser() && resource.data.userId == request.auth.uid;
+      allow create: if isValidUser();
+      allow update: if isValidUser() && resource.data.userId == request.auth.uid;
+      allow delete: if isValidUser() && resource.data.userId == request.auth.uid;
+    }
+    
+    // System logs collection (admin only)
+    match /system_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isValidUser();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Location tracking collection
+    match /location_tracking/{trackingId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        isSupervisor() || 
+        isDriver() ||
+        isParent()
+      );
+      allow create: if isValidUser() && (
+        isDriver() || 
+        isAdmin()
+      );
+      allow update: if isValidUser() && (
+        isDriver() || 
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+    
+    // File uploads collection
+    match /file_uploads/{uploadId} {
+      allow read: if isValidUser() && (
+        isAdmin() || 
+        resource.data.uploadedBy == request.auth.uid
+      );
+      allow create: if isValidUser();
+      allow update: if isValidUser() && resource.data.uploadedBy == request.auth.uid;
+      allow delete: if isAdmin() || (isValidUser() && resource.data.uploadedBy == request.auth.uid);
+    }
+    
+    // Settings collection (admin only)
+    match /settings/{settingId} {
+      allow read: if isValidUser();
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Audit logs collection (admin only)
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isValidUser();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+  }
+}

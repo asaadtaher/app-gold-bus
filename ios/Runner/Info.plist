@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>App Gold Bus</string>
+	<string>Gold Bus</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -45,5 +45,27 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	
+	<!-- صلاحيات الموقع -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>نحتاج إلى موقعك لتتبع الحافلة المدرسية</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>نحتاج إلى موقعك لتتبع الحافلة حتى في الخلفية</string>
+	
+	<!-- صلاحيات الكاميرا والمعرض -->
+	<key>NSCameraUsageDescription</key>
+	<string>نحتاج إلى الكاميرا لالتقاط صور الرخصة والسيارة</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>نحتاج إلى الوصول للصور لرفع المستندات المطلوبة</string>
+	
+	<!-- صلاحيات الإشعارات -->
+	<key>NSUserNotificationUsageDescription</key>
+	<string>نحتاج إلى إرسال إشعارات بموعد وصول الحافلة وتنبيهات الغياب</string>
+	
+	<!-- صلاحيات إضافية -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>نحتاج إلى الميكروفون للتسجيل الصوتي</string>
+	<key>NSContactsUsageDescription</key>
+	<string>نحتاج إلى الوصول للجهات للتواصل مع أولياء الأمور</string>
 </dict>
 </plist>

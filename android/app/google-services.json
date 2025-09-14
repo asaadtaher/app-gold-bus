@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1011541457803",
+    "project_id": "gold-bus-e323b",
+    "storage_bucket": "gold-bus-e323b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011541457803:android:1aaadc4c44390733cdcd8e",
+        "android_client_info": {
+          "package_name": "com.goldbus.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011541457803-6dt0hn8e36t06m5lv6t2ug0fhdmrvfor.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goldbus.app",
+            "certificate_hash": "6838a86443a674d2ed523dac1d93a755c2df87fc"
+          }
+        },
+        {
+          "client_id": "1011541457803-e9r0girmmjdih85t7ovj3tolpr3tj5o9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNqVrSaKHS3PnAfr-OktWfwhfDIuL9QDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011541457803-e9r0girmmjdih85t7ovj3tolpr3tj5o9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

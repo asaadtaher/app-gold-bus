@@ -1,125 +1,209 @@
-# Gold Bus - School Transportation Management App
+# 🚌 Gold Bus - تطبيق إدارة النقل المدرسي
 
-A comprehensive Flutter application for managing school transportation with real-time tracking, parent notifications, and administrative features.
+تطبيق Flutter شامل لإدارة النقل المدرسي مع متابعة الحافلات المباشرة وإدارة المستخدمين المتعددة.
 
-## Features
+## ✨ المميزات الرئيسية
 
-### Core Features
-- **Real-time Bus Tracking**: Live location updates with Google Maps integration
-- **Parent Notifications**: Check-in/out alerts, speed alerts, and emergency notifications
-- **Multi-language Support**: Arabic (RTL) and English (LTR) localization
-- **Authentication**: Email, Phone, Google, and Facebook login options
-- **Offline Support**: Cached maps and data for offline usage
+### 🔐 نظام المصادقة المتقدم
+- تسجيل الدخول بالبريد الإلكتروني وكلمة المرور
+- تسجيل الدخول بـ Google
+- تسجيل الدخول برقم الهاتف
+- نظام صلاحيات متعدد المستويات
 
-### Advanced Features
-- **SOS Emergency Button**: Quick emergency contact functionality
-- **Trip History**: Complete journey logs and reports
-- **Multi-child Support**: Parents can track multiple children
-- **Geofencing**: Location-based notifications
-- **Speed Alerts**: Driver speed monitoring
-- **Absence Reporting**: Student attendance tracking
+### 👥 أدوار المستخدمين
+- **ولي الأمر**: متابعة حافلة الطفل وإبلاغ الغياب
+- **السائق**: إدارة الحافلة وتحديث الموقع
+- **المشرفة**: إدارة الطلاب والمدرسة
+- **الإدارة**: إدارة النظام بالكامل
 
-### Admin Features
-- **Web Dashboard**: School administrator interface
-- **Route Management**: Bus route optimization
-- **Student Management**: Comprehensive student database
-- **Analytics**: Usage reports and insights
-- **Lost & Found**: Item tracking system
+### 🗺️ متابعة مباشرة للحافلات
+- عرض خرائط حية باستخدام OpenStreetMap
+- تحديث موقع الحافلات في الوقت الفعلي
+- عرض خطوط السير
+- تحديد موقع المستخدم
 
-## Technical Stack
+### 📱 واجهات متخصصة
+- واجهة مخصصة لكل دور مستخدم
+- تصميم متجاوب وجذاب
+- دعم اللغة العربية والإنجليزية
 
-- **Framework**: Flutter 3.7+
-- **State Management**: Riverpod
-- **Backend**: Firebase (Auth, Firestore, Storage, FCM, Analytics, Crashlytics)
-- **Maps**: Google Maps (Android), Apple MapKit (iOS)
-- **Real-time**: WebSocket/MQTT
-- **Architecture**: Clean Architecture Pattern
+## 🛠️ التقنيات المستخدمة
 
-## Project Structure
+### Frontend
+- **Flutter 3.7+** - إطار العمل الرئيسي
+- **Riverpod** - إدارة الحالة
+- **Go Router** - التنقل
+- **flutter_map** - عرض الخرائط
+- **FontAwesome** - الأيقونات
+
+### Backend
+- **Firebase Authentication** - المصادقة
+- **Cloud Firestore** - قاعدة البيانات
+- **Firebase Storage** - تخزين الملفات
+- **Firebase Messaging** - التنبيهات
+
+### الخرائط والموقع
+- **OpenStreetMap** - مصدر الخرائط المجاني
+- **Geolocator** - تحديد الموقع
+- **flutter_map** - عرض الخرائط التفاعلية
+
+## 📦 هيكل المشروع
 
 ```
 lib/
-├── core/                 # Core utilities and constants
-├── features/            # Feature-based modules
-│   ├── auth/           # Authentication
-│   ├── tracking/       # Live tracking
-│   ├── notifications/  # Push notifications
-│   ├── profile/        # User profile
-│   └── admin/          # Admin features
-├── shared/             # Shared components
-├── assets/             # Images, icons, animations
-└── docs/               # Documentation
+├── core/                    # المكونات الأساسية
+│   ├── constants/           # الثوابت
+│   ├── localization/        # الترجمة
+│   ├── router/             # التنقل
+│   ├── theme/              # التصميم
+│   └── widgets/            # المكونات المشتركة
+├── features/               # الميزات
+│   ├── auth/               # المصادقة
+│   ├── home/               # الصفحة الرئيسية
+│   ├── map/                # الخرائط والمتابعة
+│   ├── profile/            # الملف الشخصي
+│   ├── settings/           # الإعدادات
+│   └── tracking/           # التتبع
+├── models/                 # نماذج البيانات
+├── providers/              # مزودي البيانات
+├── services/               # الخدمات
+└── main.dart              # نقطة البداية
 ```
 
-## Setup Instructions
+## 🚀 التثبيت والتشغيل
 
-### Prerequisites
+### المتطلبات
 - Flutter SDK 3.7+
-- Android Studio / Xcode
-- Firebase project setup
-- Google Maps API key
+- Dart 3.0+
+- Android Studio / VS Code
+- حساب Firebase
 
-### Installation
+### خطوات التثبيت
 
-1. **Clone the repository**
+1. **استنساخ المشروع**
    ```bash
-   git clone https://github.com/asaadtaher/app-gold-bus.git
-   cd app-gold-bus
+git clone https://github.com/your-repo/gold-bus.git
+cd gold-bus
    ```
 
-2. **Install dependencies**
+2. **تثبيت التبعيات**
    ```bash
    flutter pub get
    ```
 
-3. **Configure Firebase**
-   - Add `google-services.json` (Android) to `android/app/`
-   - Add `GoogleService-Info.plist` (iOS) to `ios/Runner/`
-   - Update Firebase configuration in `lib/core/firebase/`
+3. **إعداد Firebase**
+   - إنشاء مشروع Firebase جديد
+   - إضافة `google-services.json` (Android)
+   - إضافة `GoogleService-Info.plist` (iOS)
+   - تفعيل Authentication و Firestore
 
-4. **Configure Google Maps**
-   - Add API key to `android/app/src/main/AndroidManifest.xml`
-   - Add API key to `ios/Runner/AppDelegate.swift`
-
-5. **Run the app**
+4. **تشغيل التطبيق**
    ```bash
    flutter run
    ```
 
-## Branding
+## 🔧 الإعدادات
 
-- **Primary Color**: Gold (#FFD700)
-- **Secondary Colors**: Black (#000000), Dark Gray (#333333)
-- **Typography**: Cairo/Tajawal (Arabic), Roboto (English)
-- **Logo**: logo_goldbus.png
+### إعداد Firebase
+1. إنشاء مشروع Firebase
+2. تفعيل Authentication مع البريد الإلكتروني و Google
+3. إنشاء قاعدة بيانات Firestore
+4. إعداد قواعد الأمان:
 
-## Screen Comparison Matrix
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /buses/{busId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['driver', 'admin'];
+    }
+    match /students/{studentId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['supervisor', 'admin'];
+    }
+  }
+}
+```
 
-See [docs/Screen_Comparison_Matrix.md](docs/Screen_Comparison_Matrix.md) for detailed feature parity tracking.
+### إعداد الخرائط
+- لا يتطلب إعدادات إضافية (يستخدم OpenStreetMap المجاني)
 
-## Development
+## 📱 الاستخدام
 
-### Testing
-- Unit tests: `flutter test`
-- Widget tests: `flutter test test/widget_test.dart`
-- Integration tests: `flutter test integration_test/`
+### للمستخدمين الجدد
+1. تحميل التطبيق
+2. إنشاء حساب جديد
+3. اختيار نوع الحساب (ولي أمر، سائق، مشرفة، إدارة)
+4. انتظار الموافقة من الإدارة
 
-### Code Quality
-- Linting: `flutter analyze`
-- Formatting: `dart format .`
+### لأولياء الأمور
+- متابعة موقع حافلة الطفل
+- إبلاغ غياب الطفل
+- استقبال تنبيهات وصول الحافلة
 
-## Contributing
+### للسائقين
+- تحديث موقع الحافلة
+- عرض قائمة الطلاب
+- استقبال تنبيهات الغياب
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+### للمشرفات
+- إدارة الطلاب
+- عرض خط السير
+- متابعة بلاغات الغياب
+- التواصل مع أولياء الأمور
 
-## License
+### للإدارة
+- إدارة جميع المستخدمين
+- عرض التقارير
+- إعدادات النظام
 
-This project is proprietary software. All rights reserved.
+## 🔒 الأمان والخصوصية
 
-## Support
+- تشفير البيانات في Firebase
+- مصادقة آمنة متعددة المستويات
+- صلاحيات محددة لكل دور
+- حماية بيانات الطلاب والأطفال
 
-For support and questions, contact the development team.
+## 🐛 استكشاف الأخطاء
+
+### مشاكل شائعة
+1. **خطأ في Firebase**: تأكد من إعداد الملفات بشكل صحيح
+2. **مشكلة في الخرائط**: تأكد من اتصال الإنترنت
+3. **خطأ في الموقع**: تأكد من منح إذن الموقع للتطبيق
+
+## 🤝 المساهمة
+
+نرحب بالمساهمات! يرجى:
+1. Fork المشروع
+2. إنشاء فرع للميزة الجديدة
+3. Commit التغييرات
+4. Push إلى الفرع
+5. إنشاء Pull Request
+
+## 📄 الترخيص
+
+هذا المشروع محمي بحقوق الطبع والنشر. جميع الحقوق محفوظة.
+
+## 📞 الدعم
+
+للحصول على الدعم:
+- البريد الإلكتروني: support@goldbus.com
+- الهاتف: 01204746897 - 01203935169
+
+## 🎯 خطة التطوير المستقبلية
+
+- [ ] إضافة نظام الدفع الإلكتروني
+- [ ] تطوير تطبيق ويب للإدارة
+- [ ] إضافة تقارير مفصلة
+- [ ] دعم المزيد من اللغات
+- [ ] إضافة نظام التقييمات
+
+---
+
+**Gold Bus** - نقل مدرسي آمن وموثوق 🚌✨

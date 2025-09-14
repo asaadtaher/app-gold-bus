@@ -1,7 +1,20 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.google.gms:google-services:4.4.0")
+    }
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
+        // إضافة مستودعات إضافية لحل مشاكل التحميل
+        maven { url = uri("https://jcenter.bintray.com/") }
+        maven { url = uri("https://maven.google.com/") }
     }
 }
 
